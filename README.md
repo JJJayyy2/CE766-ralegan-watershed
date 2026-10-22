@@ -96,8 +96,3 @@ Outputs: `pareto_portfolios.csv`, `preliminary_results.png`
 ## References
 
 Deb et al. (2002) NSGA-II; Renard et al. (1997) RUSLE; USDA (1972) CN method; Gupta et al. (2009) KGE; Beven & Binley (1992) GLUE
-
----
-
-**Status:** Preliminary (Oct 22, 2026) | **Final submission:** Dec 2026  
-**Citation:** [Your Name]. (2026). CE 766 Watershed Management, Indian Institute of Science.
