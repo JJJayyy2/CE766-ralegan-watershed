@@ -38,7 +38,7 @@ python ralegan_portfolio_opt.py rain.csv
 ```
 
 Outputs: `pareto_portfolios.csv`, `preliminary_results.png`
-
+![Pareto Optimization Results - Ralegan Siddhi Watershed](preliminary_results.png)
 ---
 
 ## Results Summary
