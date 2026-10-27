@@ -1,6 +1,7 @@
 # CE 766 Watershed Management: Evolutionary Optimization of Intervention Portfolios
 ## Ralegan Siddhi Watershed, Parner, Ahmednagar, Maharashtra
 
+**Student:** Jaywardhan Raghu | **Roll:** 23B0737  
 **Course:** CE 766 Watershed Management (Autumn 2026)  
 **Instructor:** Riddhi Singh  
 **Project Type:** Preliminary Results Submission (5 marks)  
@@ -38,61 +39,90 @@ python ralegan_portfolio_opt.py rain.csv
 ```
 
 Outputs: `pareto_portfolios.csv`, `preliminary_results.png`
-![Pareto Optimization Results - Ralegan Siddhi Watershed](preliminary_results.png)
+
 ---
 
-## Results Summary
+## Results
 
-| Baseline | Pareto (mean) | Pareto (best recharge) |
-|----------|---------------|------------------------|
-| Recharge: 371.6 TCM/yr | 437.9 TCM/yr (+18%) | 500.9 TCM/yr (+35%) |
-| Sediment: 16,394 t/yr | 8,880 t/yr (−46%) | 3,120 t/yr (−81%) |
-| Cost: ₹0 | ₹12.1 M | ₹23.8 M |
+![Pareto Optimization Results - Ralegan Siddhi Watershed](preliminary_results.png)
+
+| Metric | Baseline | Pareto (mean) | Pareto (best recharge) |
+|--------|----------|---------------|------------------------|
+| **Recharge** | 371.6 TCM/yr | 437.9 TCM/yr (+18%) | 500.9 TCM/yr (+35%) |
+| **Sediment** | 16,394 t/yr | 8,880 t/yr (−46%) | 3,120 t/yr (−81%) |
+| **Cost** | ₹0 | ₹12.1 M | ₹23.8 M |
 
 ### Intervention Selection (% of Pareto solutions)
 
-- **Contour bunds:** 78–100% (universal)
-- **Farm ponds:** 70–98% (mid/lower zones)
-- **Check dams:** 60–72% (upper zones)
-- **Afforestation:** 22–47% (lower cost-effectiveness)
+- **Contour bunds:** 78–100% (near-universal across all zones)
+- **Farm ponds:** 70–98% (dominant in mid and lower zones)
+- **Check dams:** 60–72% (preferred in upper steep zones)
+- **Afforestation:** 22–47% (lower cost-effectiveness vs. water harvesting)
+
+---
+
+## Watershed Zones (Z1–Z5)
+
+The watershed was divided into 5 zones by topographic position, each with different runoff and infiltration characteristics:
+
+| Zone | Position | Slope | Area (ha) | Preferred Interventions |
+|------|----------|-------|-----------|------------------------|
+| **Z1** | Upper steep | >10% | 220 | Check dams (high runoff capture), contour bunds |
+| **Z2** | Upper-mid | 5–10% | 200 | Check dams, contour bunds |
+| **Z3** | Mid | 2–5% | 210 | Farm ponds (terrain suits ponding), bunds |
+| **Z4** | Lower-mid | 1–2% | 180 | Farm ponds, contour bunds |
+| **Z5** | Lower | <1% | 172 | Farm ponds (max infiltration), afforestation |
+
+Upper zones (Z1–Z2) generate high runoff and are erosion-prone, making check dams effective. Mid and lower zones (Z3–Z5) have gentler slopes where ponding is feasible, hence farm pond dominance in the Pareto set.
 
 ---
 
 ## Methodology
 
-**Hydrological model:** SCS-CN runoff + water-balance recharge (check dams, farm ponds, bunds) + RUSLE erosion
+### Data Used
 
-**Optimization:** NSGA-II, population 120, 150 generations, budget cap ₹25 M
+Daily rainfall for 2000–2023 was downloaded from IMD Web (https://imdweb.lwcc.in/) as a NetCDF4 file covering 18.5°–19.5°N, 74.0°–76.0°E at 0.25° resolution. The nearest grid cell to Ralegan Siddhi (19.0°N, 74.5°E) was extracted and converted to a daily CSV (`rain.csv`, 8,766 records, mean 630.8 mm/yr, range 211–1089 mm).
 
-**Objectives:** Minimize cost & sediment; Maximize recharge & irrigated area
+This rainfall series drives all three model components:
+
+1. **Runoff (SCS-CN):** Daily rainfall → runoff volume per zone using curve numbers (78–86, varying by land cover and slope). Higher rainfall years generate more runoff available for harvesting.
+
+2. **Recharge (Water balance):** Runoff volume is routed to structures. Check dams store 2,500 m³ per unit (60% infiltrates), farm ponds store 400 m³ (30% infiltrates), and contour bunds capture 15% extra runoff on treated area. Natural infiltration accounts for 6% of direct rainfall.
+
+3. **Erosion (RUSLE):** Annual rainfall drives the erosivity R-factor. Interventions reduce erosion through C-factor (afforestation) and P-factor (bunds).
+
+**Optimization:** NSGA-II simultaneously minimizes cost and sediment, and maximizes recharge and irrigated area, across 150 generations with a population of 120, subject to a ₹25 M budget cap.
 
 ---
 
 ## Data Sources
 
-- IMD gridded rainfall: https://imdweb.lwcc.in/
-- Future calibration: WRIS (https://indiawris.gov.in/wris/), CGWB, Bhuvan, ISRIC
+- **Primary (used):** IMD gridded rainfall — https://imdweb.lwcc.in/
+- **Future (calibration):** WRIS well-level data — https://indiawris.gov.in/wris/
 
 ---
 
 ## Limitations
 
-- Parameters from literature (needs local calibration)
-- No well-level validation yet (planned)
-- Simplified livelihood model
-- Assumes no structural degradation
+- CN, K, LS, C, P factors from literature; not locally calibrated
+- No groundwater well-level validation yet
+- Livelihood modelled as irrigable area only
+- Structural degradation over time not modelled
 
 ---
 
 ## Next Steps
 
-1. Acquire well-level data → calibrate recharge (WTF method)
-2. High-res DEM + LULC → refine CN, K, LS, C
-3. Scenario discovery & sensitivity analysis
-4. Compare optimized vs. actual portfolios
+1. Download 1–2 WRIS well records → calibrate recharge via water-table-fluctuation method
+2. Sensitivity analysis on CN (±5) and budget (±20%)
+3. Final report with trade-off interpretation and recommendations
 
 ---
 
 ## References
 
-Deb et al. (2002) NSGA-II; Renard et al. (1997) RUSLE; USDA (1972) CN method; Gupta et al. (2009) KGE; Beven & Binley (1992) GLUE
+Deb et al. (2002) NSGA-II, *IEEE Trans. Evol. Comput.*; Renard et al. (1997) RUSLE, *USDA Handbook 703*; USDA SCS (1972) CN method, *National Engineering Handbook*
+
+---
+
+**Status:** Preliminary (50% complete) | **Final submission:** December 2026
