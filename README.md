@@ -19,7 +19,8 @@ Multi-objective optimization study of watershed intervention portfolios in Raleg
 ## Files
 
 ### Data
-- `rain.csv` — Daily gridded rainfall (IMD, 2000–2023, 8,766 rows)
+- `imdweb_KpxNPXnE.nc` — Raw NetCDF4 downloaded from IMD containing daily gridded rainfall (0.25°, 2000–2023)
+- `rain.csv` — Extracted from the above for the nearest grid cell to Ralegan Siddhi - daily gridded rain (IMD, 2000–2023, 8,766 rows)
 - `pareto_portfolios.csv` — 120 Pareto-optimal solutions with decision variables and objectives
 
 ### Code
