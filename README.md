@@ -3,7 +3,8 @@
 
 **Student:** Jaywardhan Raghu | **Roll:** 23B0737  
 **Course:** CE 766 Watershed Management (Autumn 2026)  
-**Instructor:** Riddhi Singh    
+**Instructor:** Riddhi Singh  
+**Project Type:** Preliminary Results Submission (5 marks)  
 **Submission Date:** October 22, 2026
 
 ---
@@ -19,15 +20,15 @@ Multi-objective optimization study of watershed intervention portfolios in Raleg
 ## Files
 
 ### Data
-- `imdweb_KpxNPXnE.nc` — Raw NetCDF4 downloaded from IMD containing daily gridded rainfall (0.25°, 2000–2023)
-- `rain.csv` — Extracted from the above for the nearest grid cell to Ralegan Siddhi - daily gridded rain (IMD, 2000–2023, 8,766 rows)
-- `pareto_portfolios.csv` — 120 Pareto-optimal solutions with decision variables and objectives
+- `imdweb_KpxNPXnE.nc` - Raw NetCDF4 file downloaded from IMD Web portal containing daily gridded rainfall (0.25° resolution, 18.5°–19.5°N, 74.0°–76.0°E, 2000–2023)
+- `rain.csv` - Daily gridded rainfall extracted from the above file for the nearest grid cell to Ralegan Siddhi (IMD, 2000–2023, 8,766 rows)
+- `pareto_portfolios.csv` - 120 Pareto-optimal solutions with decision variables and objectives
 
 ### Code
-- `ralegan_portfolio_opt.py` — NSGA-II optimization script (Python 3.8+)
+- `ralegan_portfolio_opt.py` - NSGA-II optimization script (Python 3.8+)
 
 ### Figures
-- `preliminary_results.png` — 3-panel Pareto trade-off plot (300 dpi)
+- `preliminary_results.png` - 3-panel Pareto trade-off plot (300 dpi)
 
 ---
 
@@ -97,8 +98,8 @@ This rainfall series drives all three model components:
 
 ## Data Sources
 
-- **Primary (used):** IMD gridded rainfall — https://imdweb.lwcc.in/
-- **Future (calibration):** WRIS well-level data — https://indiawris.gov.in/wris/
+- **Primary (used):** IMD gridded rainfall - https://imdweb.lwcc.in/
+- **Future (calibration):** WRIS well-level data - https://indiawris.gov.in/wris/
 
 ---
 
@@ -124,3 +125,5 @@ This rainfall series drives all three model components:
 Deb et al. (2002) NSGA-II, *IEEE Trans. Evol. Comput.*; Renard et al. (1997) RUSLE, *USDA Handbook 703*; USDA SCS (1972) CN method, *National Engineering Handbook*
 
 ---
+
+**Status:** Preliminary (50% complete) | **Final submission:** December 2026
