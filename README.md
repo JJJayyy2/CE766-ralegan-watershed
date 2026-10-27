@@ -3,8 +3,7 @@
 
 **Student:** Jaywardhan Raghu | **Roll:** 23B0737  
 **Course:** CE 766 Watershed Management (Autumn 2026)  
-**Instructor:** Riddhi Singh  
-**Project Type:** Preliminary Results Submission (5 marks)  
+**Instructor:** Riddhi Singh    
 **Submission Date:** October 22, 2026
 
 ---
@@ -124,5 +123,3 @@ This rainfall series drives all three model components:
 Deb et al. (2002) NSGA-II, *IEEE Trans. Evol. Comput.*; Renard et al. (1997) RUSLE, *USDA Handbook 703*; USDA SCS (1972) CN method, *National Engineering Handbook*
 
 ---
-
-**Status:** Preliminary (50% complete) | **Final submission:** December 2026
